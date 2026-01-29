@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organización HEROM - Capacitación Profesional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- jsPDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .bg-herom-red { background-color: #E31E24; }
+        .text-herom-red { color: #E31E24; }
+        .border-herom-red { border-color: #E31E24; }
+        
+        .hero-banner {
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://images.unsplash.com/photo-1544725121-be3b5d02e9b1?q=80&w=2067&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(227, 30, 36, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .input-herom {
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .input-herom:focus {
+            border-color: #E31E24;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .cv-dropzone {
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .cv-dropzone:hover {
+            border-color: #E31E24;
+            background-color: #fef2f2;
+        }
+
+        .success-modal {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="bg-white border-b-4 border-herom-red sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-24">
+            <div class="flex items-center">
+                <!-- Branding / Logo Linked to GitHub assets -->
+                <img src="https://raw.githubusercontent.com/username/repo/main/logo.png" 
+                     onerror="this.src='https://via.placeholder.com/200x60/ffffff/e31e24?text=HEROM+Capacitación'" 
+                     alt="HEROM Logo" class="h-14">
+            </div>
+            <div class="hidden lg:flex items-center space-x-10">
+                <a href="#nosotros" class="font-black uppercase text-sm tracking-wider hover:text-herom-red transition">Nosotros</a>
+                <a href="#inscripcion" class="bg-herom-red text-white px-8 py-3 rounded-full font-black uppercase text-sm btn-action">Inscribirse</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-banner min-h-[85vh] flex items-center justify-center text-center px-6">
+        <div class="max-w-4xl">
+            <h1 class="text-6xl md:text-8xl font-black text-white uppercase mb-6 leading-none">Organización <br><span class="text-herom-red">HEROM</span></h1>
+            <p class="text-xl md:text-2xl text-gray-300 font-light mb-10">Líderes en Seguridad, Higiene, Medio Ambiente y Seguridad Patrimonial.</p>
+            <a href="#inscripcion" class="bg-white text-gray-900 px-12 py-5 rounded-full text-lg font-black uppercase tracking-widest btn-action">Empezar ahora</a>
+        </div>
+    </section>
+
+    <!-- Institutional Info -->
+    <section id="nosotros" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-24">
+                <div>
+                    <h2 class="text-4xl font-black uppercase mb-6 border-l-8 border-herom-red pl-6">Nuestra Organización</h2>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        Organización HEROM es una entidad dedicada a la formación profesional de alto nivel. Nuestro objetivo primordial es dotar a los participantes de herramientas críticas para la prevención de riesgos y la gestión efectiva de la seguridad en entornos industriales y corporativos.
+                    </p>
+                    <div class="bg-gray-100 p-8 rounded-3xl">
+                        <h3 class="text-xl font-black uppercase text-herom-red mb-3">Objetivo del Curso</h3>
+                        <p class="font-medium text-gray-700 italic">
+                            "Capacitar al personal en la identificación proactiva de riesgos, cumplimiento normativo y protección de activos para garantizar la continuidad operativa y la integridad humana."
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-herom-red text-white p-8 rounded-2xl shadow-xl">
+                        <i class="fas fa-bullseye text-3xl mb-4"></i>
+                        <h4 class="text-xl font-bold uppercase mb-2">Misión</h4>
+                        <p class="text-sm opacity-90">Formar especialistas con ética y rigor técnico para un mundo laboral más seguro.</p>
+                    </div>
+                    <div class="bg-gray-900 text-white p-8 rounded-2xl shadow-xl">
+                        <i class="fas fa-eye text-3xl mb-4"></i>
+                        <h4 class="text-xl font-bold uppercase mb-2">Visión</h4>
+                        <p class="text-sm opacity-90">Ser el referente nacional en consultoría y capacitación de seguridad integral.</p>
+                    </div>
+                    <div class="bg-gray-100 p-8 rounded-2xl sm:col-span-2">
+                        <h4 class="text-xl font-black uppercase mb-4 text-center">Nuestros Valores</h4>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <span class="bg-white px-4 py-2 rounded-full text-xs font-black border border-gray-200 uppercase">Integridad</span>
+                            <span class="bg-white px-4 py-2 rounded-full text-xs font-black border border-gray-200 uppercase">Excelencia</span>
+                            <span class="bg-white px-4 py-2 rounded-full text-xs font-black border border-gray-200 uppercase">Respeto Ambiental</span>
+                            <span class="bg-white px-4 py-2 rounded-full text-xs font-black border border-gray-200 uppercase">Seguridad</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enrollment Form -->
+    <section id="inscripcion" class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white p-8 md:p-16 rounded-[2.5rem] shadow-2xl relative">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-black uppercase tracking-tighter">Formulario de Inscripción</h2>
+                    <p class="text-gray-400 mt-2 font-bold uppercase text-xs tracking-widest">Todos los campos son obligatorios</p>
+                </div>
+
+                <form id="formInscripcion" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Nombre -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Nombre Completo *</label>
+                            <input type="text" id="nombre" required class="input-herom bg-gray-50" placeholder="Nombre y Apellidos">
+                        </div>
+                        <!-- Fecha Nacimiento -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Fecha de Nacimiento *</label>
+                            <input type="date" id="fechaNacimiento" required class="input-herom bg-gray-50">
+                        </div>
+                        <!-- Curso -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Selecciona el Curso *</label>
+                            <select id="curso" required class="input-herom bg-gray-50">
+                                <option value="">-- Elige un curso --</option>
+                                <option value="Seguridad">Seguridad</option>
+                                <option value="Higiene">Higiene</option>
+                                <option value="Medio Ambiente">Medio Ambiente</option>
+                                <option value="Seguridad Patrimonial">Seguridad Patrimonial</option>
+                            </select>
+                        </div>
+                        <!-- Modalidad -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Modalidad *</label>
+                            <select id="modalidad" required class="input-herom bg-gray-50">
+                                <option value="">-- Elige modalidad --</option>
+                                <option value="Presencial">Presencial</option>
+                                <option value="Virtual">Virtual</option>
+                            </select>
+                        </div>
+                        <!-- Teléfono -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Teléfono (10 dígitos) *</label>
+                            <input type="text" id="telefono" required maxlength="10" 
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '');" 
+                                   class="input-herom bg-gray-50" placeholder="5512345678">
+                        </div>
+                        <!-- Email -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Email *</label>
+                            <input type="email" id="email" required class="input-herom bg-gray-50" placeholder="usuario@ejemplo.com">
+                        </div>
+                        <!-- Ciudad -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Ciudad *</label>
+                            <input type="text" id="ciudad" required class="input-herom bg-gray-50" placeholder="Tu ciudad">
+                        </div>
+                        <!-- Estado -->
+                        <div class="flex flex-col">
+                            <label class="text-xs font-black uppercase mb-2 text-gray-500">Estado *</label>
+                            <select id="estado" required class="input-herom bg-gray-50">
+                                <option value="">-- Selecciona Estado --</option>
+                                <option value="Aguascalientes">Aguascalientes</option>
+                                <option value="Baja California">Baja California</option>
+                                <option value="Baja California Sur">Baja California Sur</option>
+                                <option value="Campeche">Campeche</option>
+                                <option value="Chiapas">Chiapas</option>
+                                <option value="Chihuahua">Chihuahua</option>
+                                <option value="CDMX">Ciudad de México</option>
+                                <option value="Coahuila">Coahuila</option>
+                                <option value="Colima">Colima</option>
+                                <option value="Durango">Durango</option>
+                                <option value="Guanajuato">Guanajuato</option>
+                                <option value="Guerrero">Guerrero</option>
+                                <option value="Hidalgo">Hidalgo</option>
+                                <option value="Jalisco">Jalisco</option>
+                                <option value="México">México</option>
+                                <option value="Michoacán">Michoacán</option>
+                                <option value="Morelos">Morelos</option>
+                                <option value="Nayarit">Nayarit</option>
+                                <option value="Nuevo León">Nuevo León</option>
+                                <option value="Oaxaca">Oaxaca</option>
+                                <option value="Puebla">Puebla</option>
+                                <option value="Querétaro">Querétaro</option>
+                                <option value="Quintana Roo">Quintana Roo</option>
+                                <option value="San Luis Potosí">San Luis Potosí</option>
+                                <option value="Sinaloa">Sinaloa</option>
+                                <option value="Sonora">Sonora</option>
+                                <option value="Tabasco">Tabasco</option>
+                                <option value="Tamaulipas">Tamaulipas</option>
+                                <option value="Tlaxcala">Tlaxcala</option>
+                                <option value="Veracruz">Veracruz</option>
+                                <option value="Yucatán">Yucatán</option>
+                                <option value="Zacatecas">Zacatecas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-xs font-black uppercase mb-2 text-gray-500">Comentarios *</label>
+                        <textarea id="comentarios" required rows="3" class="input-herom bg-gray-50" placeholder="Mensaje adicional..."></textarea>
+                    </div>
+
+                    <!-- Adjuntar CV -->
+                    <div class="flex flex-col">
+                        <label class="text-xs font-black uppercase mb-2 text-gray-500">Adjuntar CV (PDF) *</label>
+                        <div class="cv-dropzone" id="cvDropArea">
+                            <input type="file" id="cvFile" accept=".pdf" class="hidden" required>
+                            <i class="fas fa-cloud-upload-alt text-4xl text-herom-red mb-3"></i>
+                            <p class="text-sm font-bold" id="cvFileName">Haz clic o arrastra tu Curriculum aquí</p>
+                            <p class="text-[10px] text-gray-400 mt-2 uppercase">Formato aceptado: .pdf</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-4 pt-8">
+                        <button type="submit" class="flex-1 bg-herom-red text-white py-5 rounded-2xl font-black uppercase tracking-widest btn-action shadow-lg">
+                            Generar Inscripción
+                        </button>
+                        <button type="button" id="btnExportar" disabled class="flex-1 bg-gray-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest opacity-50 cursor-not-allowed">
+                            Exportar Recibo (PDF)
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Success Overlay -->
+                <div id="modalExito" class="hidden success-modal absolute inset-0 z-50 flex items-center justify-center text-center p-12">
+                    <div>
+                        <div class="w-24 h-24 bg-green-500 text-white rounded-full flex items-center justify-center text-5xl mx-auto mb-8 animate-bounce">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-4xl font-black uppercase mb-4 text-gray-900">Se ha inscrito correctamente</h3>
+                        <p class="text-gray-500 mb-10">Su registro ha sido guardado en la base de datos de HEROM. <br>Ya puede descargar su recibo oficial.</p>
+                        <button onclick="cerrarExito()" class="bg-gray-900 text-white px-12 py-4 rounded-full font-black uppercase text-sm tracking-widest hover:bg-black transition">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div>
+                    <h2 class="text-4xl font-black text-herom-red mb-4">HEROM</h2>
+                    <p class="text-gray-500 max-w-sm">Capacitación técnica superior para líderes en prevención y seguridad.</p>
+                </div>
+                <div class="flex space-x-8 text-3xl">
+                    <a href="https://facebook.com" class="hover:text-herom-red transition"><i class="fab fa-facebook"></i></a>
+                    <a href="https://instagram.com" class="hover:text-herom-red transition"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" class="hover:text-herom-red transition"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://linkedin.com" class="hover:text-herom-red transition"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="mt-16 pt-8 border-t border-gray-800 text-center text-[10px] text-gray-600 font-black uppercase tracking-[0.3em]">
+                &copy; 2024 Organización HEROM | Todos los derechos reservados
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/525512345678" target="_blank" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        const form = document.getElementById('formInscripcion');
+        const cvInput = document.getElementById('cvFile');
+        const cvArea = document.getElementById('cvDropArea');
+        const cvLabel = document.getElementById('cvFileName');
+        const btnExportar = document.getElementById('btnExportar');
+        const modal = document.getElementById('modalExito');
+        
+        let inscripcionReciente = null;
+
+        // CV File handler
+        cvArea.addEventListener('click', () => cvInput.click());
+        cvInput.addEventListener('change', function() {
+            if(this.files && this.files[0]) {
+                cvLabel.textContent = `Archivo cargado: ${this.files[0].name}`;
+                cvLabel.classList.add('text-herom-red');
+            }
+        });
+
+        // Form Submit
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar teléfono 10 dígitos
+            const tel = document.getElementById('telefono').value;
+            if(tel.length < 10) {
+                alert("El teléfono debe contener exactamente 10 dígitos numéricos.");
+                return;
+            }
+
+            // Save data for PDF
+            inscripcionReciente = {
+                nombre: document.getElementById('nombre').value,
+                nacimiento: document.getElementById('fechaNacimiento').value,
+                curso: document.getElementById('curso').value,
+                modalidad: document.getElementById('modalidad').value,
+                telefono: tel,
+                email: document.getElementById('email').value,
+                ciudad: document.getElementById('ciudad').value,
+                estado: document.getElementById('estado').value,
+                comentarios: document.getElementById('comentarios').value,
+                cv: cvInput.files[0] ? cvInput.files[0].name : "CV_Adjunto.pdf",
+                fecha: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString()
+            };
+
+            // Success UI
+            modal.classList.remove('hidden');
+            
+            // Enable PDF Export
+            btnExportar.disabled = false;
+            btnExportar.classList.remove('opacity-50', 'cursor-not-allowed');
+            btnExportar.classList.add('btn-action');
+
+            // Reset Form automatically
+            form.reset();
+            cvLabel.textContent = "Haz clic o arrastra tu Curriculum aquí";
+            cvLabel.classList.remove('text-herom-red');
+        });
+
+        function cerrarExito() {
+            modal.classList.add('hidden');
+        }
+
+        // PDF Generation
+        btnExportar.addEventListener('click', function() {
+            if(!inscripcionReciente) return;
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Header Style
+            doc.setFillColor(227, 30, 36);
+            doc.rect(0, 0, 210, 45, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(24);
+            doc.text("ORGANIZACIÓN HEROM", 105, 22, { align: "center" });
+            doc.setFontSize(14);
+            doc.text("RECIBO DE INSCRIPCIÓN OFICIAL", 105, 33, { align: "center" });
+
+            // Body Data
+            doc.setTextColor(33, 33, 33);
+            doc.setFontSize(11);
+            let cursorY = 65;
+
+            const addField = (label, value) => {
+                doc.setFont("helvetica", "bold");
+                doc.text(`${label}:`, 20, cursorY);
+                doc.setFont("helvetica", "normal");
+                doc.text(`${value}`, 80, cursorY);
+                cursorY += 10;
+            };
+
+            addField("Inscripto", inscripcionReciente.nombre);
+            addField("Fecha Nacimiento", inscripcionReciente.nacimiento);
+            addField("Curso", inscripcionReciente.curso);
+            addField("Modalidad", inscripcionReciente.modalidad);
+            addField("Teléfono", inscripcionReciente.telefono);
+            addField("Correo", inscripcionReciente.email);
+            addField("Ubicación", `${inscripcionReciente.ciudad}, ${inscripcionReciente.estado}`);
+            addField("Archivo CV", inscripcionReciente.cv);
+            addField("Fecha Registro", inscripcionReciente.fecha);
+
+            cursorY += 5;
+            doc.setFont("helvetica", "bold");
+            doc.text("Comentarios del alumno:", 20, cursorY);
+            cursorY += 8;
+            doc.setFont("helvetica", "italic");
+            const lines = doc.splitTextToSize(inscripcionReciente.comentarios, 170);
+            doc.text(lines, 20, cursorY);
+
+            // Footer
+            doc.setDrawColor(227, 30, 36);
+            doc.setLineWidth(1);
+            doc.line(20, 275, 190, 275);
+            doc.setFontSize(9);
+            doc.setTextColor(120, 120, 120);
+            doc.text("Este recibo es un comprobante de inscripción válido para el periodo 2024-2025.", 105, 282, { align: "center" });
+
+            doc.save(`Recibo_HEROM_${inscripcionReciente.nombre.replace(/\s+/g, '_')}.pdf`);
+        });
+    </script>
+</body>
+</html>
